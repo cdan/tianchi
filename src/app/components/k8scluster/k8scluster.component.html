@@ -1,0 +1,76 @@
+<h3 *ngIf="articleIdToUpdate; else create">
+    Update K8S for Id: {{articleIdToUpdate}}
+</h3>
+<ng-template #create>
+    <h3> Add new k8s cluster </h3>
+</ng-template>
+<div>
+
+
+    <form clrForm clrLayout="horizontal" [formGroup]="k8sForm" (ngSubmit)="onK8sFormSubmit()">
+        <clr-input-container>
+            <label >K8S Name</label>
+            <input clrInput formControlName="name" required />
+            <clr-control-helper>K8S cluster name</clr-control-helper>
+            <clr-control-error>name required!</clr-control-error>
+        </clr-input-container>
+        <clr-textarea-container>
+            <label>Kube Conf</label>
+            <textarea clrTextarea formControlName="kubeconf" required></textarea>
+            <clr-control-helper>KUBECONF file content</clr-control-helper>
+            <clr-control-error>Kube Conf required!</clr-control-error>
+        </clr-textarea-container>
+        <button class="btn btn-primary" *ngIf="!articleIdToUpdate">CREATE</button>
+        <button class="btn btn-primary" *ngIf="articleIdToUpdate">UPDATE</button>
+        <button class="btn" (click)="backToCreateK8s()" *ngIf="articleIdToUpdate">Go Back</button>
+    </form>
+
+
+
+    <br />
+    <div *ngIf="statusCode; else processing">
+        <div *ngIf="statusCode === 201" class="success">
+            K8S added successfully.
+        </div>
+        <div *ngIf="statusCode === 200" class="success">
+            K8S updated successfully.
+        </div>
+        <div *ngIf="statusCode === 204" class="success">
+            K8S deleted successfully.
+        </div>
+        <div *ngIf="statusCode === 500" class="error">
+            Internal Server Error.
+        </div>
+    </div>
+    <ng-template #processing>
+        <img *ngIf="requestProcessing" src="assets/images/loading.gif">
+    </ng-template>
+</div>
+<h3>K8S clusters Details</h3>
+
+
+<div class="clr-row">
+
+    <div class="clr-col-9">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="left">ID</th>
+                    <th class="left">Name</th>
+                    <th class="left">KubeConf</th>
+                    <th class="left">Actions</th>
+                </tr>
+            </thead>
+            <tr *ngFor="let k8s of allK8s">
+                <td class="left">{{k8s.id}}</td>
+                <td class="left">{{k8s.name}}</td>
+                <td class="left" style="word-wrap: break-word;max-width: 500px;">{{k8s.kubeconf}}</td>
+                <td class="left">
+                    <button class="btn btn-outline" type="button" (click)="loadK8sToEdit(k8s.id)">Edit</button>
+                    <button class="btn btn-outline" type="button" (click)="deleteK8sById(k8s.id)">Delete</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
