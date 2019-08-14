@@ -22,8 +22,11 @@
     "@clr/angular": "^2.1.1",
     "@clr/icons": "2.1.1",
     "@clr/ui": "2.1.1",
+    "@kubernetes/client-node": "^0.10.2",
     "@webcomponents/custom-elements": "^1.0.0",
     "angular-in-memory-web-api": "^0.8.0",
+    "buffer": "^5.4.0",
+    "process": "^0.11.10",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
@@ -48,5 +51,12 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.5.3"
+  },
+  "browser": {
+    "child_process": false,
+    "fs": false,
+    "net": false,
+    "tls": false,
+    "crypto": false
   }
 }

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
-
 import { K8s } from './k8s';
+//import { KubeConfig, CoreV1Api } from '@kubernetes/client-node'
 
 @Injectable({
     providedIn: 'root'
@@ -62,8 +62,12 @@ export class K8sService {
             catchError(this.handleError)
         );
     }
+
     private handleError(error: any) {
         console.error(error);
         return throwError(error);
     }
 }
+
+
+

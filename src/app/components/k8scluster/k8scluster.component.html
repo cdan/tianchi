@@ -23,6 +23,7 @@
         <button class="btn btn-primary" *ngIf="!articleIdToUpdate">CREATE</button>
         <button class="btn btn-primary" *ngIf="articleIdToUpdate">UPDATE</button>
         <button class="btn" (click)="backToCreateK8s()" *ngIf="articleIdToUpdate">Go Back</button>
+        <button class="btn btn-primary" (click)="verifyK8s()">verify</button>
     </form>
 
 

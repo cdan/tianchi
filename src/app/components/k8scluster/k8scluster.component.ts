@@ -108,6 +108,10 @@ export class K8sclusterComponent implements OnInit {
 		this.statusCode = null;
 		this.requestProcessing = true;
 	}
+
+	verifyK8s() {
+		//this.k8sService.verifyK8s();
+	}
 	//Go back from update to create
 	backToCreateK8s() {
 		this.articleIdToUpdate = null;
